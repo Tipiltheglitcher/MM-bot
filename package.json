@@ -1,4 +1,15 @@
 {
+  "name": "mm-bot",
+  "version": "1.0.0",
+  "description": "MM NOT",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon app.js",
+    "pm2-start": "pm2 start app.js --name mon-projet-discord",
+    "build": "echo 'Build step not defined'",
+    "test": "echo 'Error: no test specified' && exit 1"
+  },
   "dependencies": {
     "@discordjs/builders": "^1.5.0",
     "@discordjs/rest": "^1.6.0",
@@ -15,5 +26,13 @@
     "wokcommands": "^2.1.0",
     "ws": "^8.5.0",
     "xml-parser": "^1.2.1"
-  }
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "engines": {
+    "node": ">=16.9.0"
+  },
+  "author": "TonNom",
+  "license": "MIT"
 }
