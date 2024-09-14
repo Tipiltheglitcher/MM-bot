@@ -33,6 +33,6 @@
   "engines": {
     "node": ">=16.9.0"
   },
-  "author": "TonNom",
+  "author": "TonNom"
   "license": "MIT"
 }
