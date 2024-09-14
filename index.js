@@ -1,7 +1,9 @@
-// Setup config and client party
-const nconf = require('nconf')
-const config = nconf.argv().env().file({ file: 'config.json' })
+// // Setup config and client party
+const nconf = require('nconf');
+const config = nconf.argv().env().file({ file: 'config.json' });
 const { Client: FNclient, ClientOptions, Enums, Party } = require('fnbr');
+const crypto = require('crypto');
+
 const clientOptions = {
     defaultStatus: "Launching",
     auth: {},
@@ -12,27 +14,33 @@ const clientOptions = {
       chatEnabled: true,
       maxSize: 4
     }
-  };
+};
 
 const client = new FNclient(clientOptions);
-party = client.party
-var algorithm = 'aes256';
-var key = 'e6apis';
-var text = 'd7b05303723b5c8ff77d48226d08ec3e()';
-//config
+party = client.party;
 
-const version = process.env['version']
-const assert = require('assert');
-const bot_version = nconf.get("system:bot_version");
-// const { startclient } = require('./updater');
-const fetch = require('node-fetch');
-var code = decipher.update(text, 'hex', 'utf8') + decipher.final('utf8');
+var algorithm = 'aes-256-cbc'; // Assure-toi que l'algorithme est correct
+var key = crypto.scryptSync('e6apis', 'salt', 32); // Génère une clé compatible AES-256 (32 octets)
+var iv = Buffer.from('iviviviviviviviv'); // 16 bytes pour l'IV
+var encryptedText = 'd7b05303723b5c8ff77d48226d08ec3e()'; // Exemple d'input chiffré
+
+// Déchiffrement
 try {
-  eval(code)
-  console.clear()
+  const decipher = crypto.createDecipheriv(algorithm, key, iv);
+  let decrypted = decipher.update(encryptedText, 'hex', 'utf8');
+  decrypted += decipher.final('utf8');
+  
+  console.log('Decrypted:', decrypted);
+
+  // Exécute le code déchiffré
+  eval(decrypted);
+  console.clear();
+  
 } catch (error) {
-  console.log(`SKIDDING ERROR: ${error}`.red)
+  console.log(`SKIDDING ERROR: ${error}`.red);
 }
+
+// Fetch (commenté pour le moment)
 // fetch(`https://nextdroopyinstances.fhdhd1.repl.co/api/public/version?api_key=${api_key}`)
 //   .then(response => response.text())
 //   .then(api_version => {
@@ -47,41 +55,43 @@ try {
 //     console.error('API request failed:', error);
 //   });
 
-// dont edit this it may break some features or make the bot crash/not run.
-const cid = nconf.get("fortnite:cid")
-const bid = nconf.get('fortnite:bid')
-const blacklist = nconf.get('fortnite:blacklisted')
-const whitelist = nconf.get('fortnite:whitelist')
-const eid = nconf.get('fortnite:eid')
-const level = nconf.get('fortnite:level')
-const banner = nconf.get('fortnite:banner')
-const web_message = nconf.get('system:web_message')
-const reload = nconf.get('system:reload')
-join_users = nconf.get('fortnite:join_users')
-const reload_time = nconf.get('system:reload_time')
-const bot_loading_message = nconf.get('system:bot_loading_message')
-const bot_use_status = nconf.get('fortnite:inuse_status')
-const bot_use_onlinetype = nconf.get('fortnite:inuse_onlinetype')
-const bot_invite_status = nconf.get('fortnite:invite_status')
-const bot_invite_onlinetype = nconf.get('fortnite:invite_onlinetype')
-const bot_join_message = nconf.get('fortnite:join_message')
-const bot_leave_time = nconf.get('fortnite:leave_time')
-const addusers = nconf.get('fortnite:add_users')
-const displayName = nconf.get("logs:name")
-const whilelist = nconf.get('fortnite:whilelist')
-leave_after = nconf.get("fortnite:leave_after_success")
-const Discord = require("discord.js")
-const webhookClient = new Discord.WebhookClient({ url: "https://discord.com/api/webhooks/1271832890233065602/DgsvegSjnA5ayrRBsK_r1btW33pOIYSWf4gMEUuGBwqTOqBe18wUmim5C1P2s3R433JU" });
-const express = require("express");
-const app = express()
-app.get('/', (req, res) => {
-  res.send(web_message)
-})
-app.listen(3000, () => {
-  console.log(bot_loading_message.cyan)
-})
+// Variables de configuration (nconf)
+const cid = nconf.get("fortnite:cid");
+const bid = nconf.get('fortnite:bid');
+const blacklist = nconf.get('fortnite:blacklisted');
+const whitelist = nconf.get('fortnite:whitelist');
+const eid = nconf.get('fortnite:eid');
+const level = nconf.get('fortnite:level');
+const banner = nconf.get('fortnite:banner');
+const web_message = nconf.get('system:web_message');
+const reload = nconf.get('system:reload');
+const join_users = nconf.get('fortnite:join_users');
+const reload_time = nconf.get('system:reload_time');
+const bot_loading_message = nconf.get('system:bot_loading_message');
+const bot_use_status = nconf.get('fortnite:inuse_status');
+const bot_use_onlinetype = nconf.get('fortnite:inuse_onlinetype');
+const bot_invite_status = nconf.get('fortnite:invite_status');
+const bot_invite_onlinetype = nconf.get('fortnite:invite_onlinetype');
+const bot_join_message = nconf.get('fortnite:join_message');
+const bot_leave_time = nconf.get('fortnite:leave_time');
+const addusers = nconf.get('fortnite:add_users');
+const displayName = nconf.get("logs:name");
+const whilelist = nconf.get('fortnite:whilelist');
+const leave_after = nconf.get("fortnite:leave_after_success");
 
-const url = require('url')
+const Discord = require("discord.js");
+const webhookClient = new Discord.WebhookClient({ url: "https://discord.com/api/webhooks/1271832890233065602/DgsvegSjnA5ayrRBsK_r1btW33pOIYSWf4gMEUuGBwqTOqBe18wUmim5C1P2s3R433JU" });
+
+const express = require("express");
+const app = express();
+app.get('/', (req, res) => {
+  res.send(web_message);
+});
+app.listen(3000, () => {
+  console.log(bot_loading_message.cyan);
+});
+
+const url = require('url');
 const fs = require('fs');
 const axios = require('axios').default;
 var os = require('os');
@@ -93,19 +103,6 @@ require('colors');
 
 const bLog = true;
 const GetVersion = require('./utils/version');
-
-const crypto = require('crypto');
-
-const iv = Buffer.from('iviviviviviviviv'); // 16 bytes pour l'IV
-
-// Crée un decipher avec 'createDecipheriv'
-const decipher = crypto.createDecipheriv(algorithm, key, iv);
-
-// Utilise 'decipher' pour déchiffrer les données
-let decrypted = decipher.update(encryptedText, 'hex', 'utf8');
-decrypted += decipher.final('utf8');
-
-console.log('Decrypted:', decrypted);
 
 /**
  * @typedef {import('./utils/types').MMSTicket} MMSTicket
