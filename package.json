@@ -36,3 +36,6 @@
   "author": "TonNom",
   "license": "MIT"
 }
+"scripts": {
+    "postinstall": "cd node_modules/fnbr && npm install && npm run build"
+}
