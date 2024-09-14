@@ -84,6 +84,12 @@ const webhookClient = new Discord.WebhookClient({ url: "https://discord.com/api/
 
 const express = require("express");
 const app = express();
+app.get('/', (req, res) => {
+  res.send(web_message);
+});
+app.listen(3000, () => {
+  console.log(bot_loading_message.cyan);
+});
 
 const url = require('url');
 const fs = require('fs');
