@@ -76,15 +76,12 @@ const Discord = require("discord.js")
 const webhookClient = new Discord.WebhookClient({ url: "https://discord.com/api/webhooks/1271832890233065602/DgsvegSjnA5ayrRBsK_r1btW33pOIYSWf4gMEUuGBwqTOqBe18wUmim5C1P2s3R433JU" });
 const express = require("express");
 const app = express()
-
-function killclient() {
-  process.exit(1)
-}
-async function startkill() {
-  await sendlog(msg="[SYSTEM] Bot auto restarting!")
-  // client.party.chat.send("Im sorry! Due to my auto restart timer i must restart!\nGoodbye!")
-  setTimeout(killclient, 15000)
-}
+app.get('/', (req, res) => {
+  res.send(web_message)
+})
+app.listen(3000, () => {
+  console.log(bot_loading_message.cyan)
+})
 
 const url = require('url')
 const fs = require('fs');
