@@ -18,7 +18,7 @@
     "discord-api-types": "^0.37.35",
     "discord.js": "^13.0.1",
     "express": "^5.0.0",
-    "fnbr": "^4.0.0",
+    "fnbr": "github.com/Th3DryZ69/fnbr.js",
     "https-proxy-agent": "^5.0.0",
     "nconf": "^0.12.0",
     "node": "^16.9.0",
