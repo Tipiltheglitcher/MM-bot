@@ -97,8 +97,7 @@ const GetVersion = require('./utils/version');
 
 const crypto = require('crypto');
 
-// L'algorithme, la clé et l'IV doivent être correctement définis.
-const algorithm = 'aes-256-cbc'; // Exemple d'algorithme, à adapter
+// Exemple d'algorithme, à adapter
 const key = Buffer.from('votreclefherevotreclefherevotreclefherev', 'utf8'); // 32 bytes pour AES-256
 const iv = Buffer.from('iviviviviviviviv'); // 16 bytes pour l'IV
 
