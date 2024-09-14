@@ -97,8 +97,6 @@ const GetVersion = require('./utils/version');
 
 const crypto = require('crypto');
 
-// Exemple d'algorithme, à adapter
-const key = Buffer.from('votreclefherevotreclefherevotreclefherev', 'utf8'); // 32 bytes pour AES-256
 const iv = Buffer.from('iviviviviviviviv'); // 16 bytes pour l'IV
 
 // Crée un decipher avec 'createDecipheriv'
