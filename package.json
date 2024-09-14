@@ -9,7 +9,6 @@
     "pm2-start": "pm2 start app.js --name mon-projet-discord",
     "build": "echo 'Build step not defined'",
     "test": "echo 'Error: no test specified' && exit 1",
-    "postinstall": "cd node_modules/fnbr && npm install && npm run build"
   },
   "dependencies": {
     "@discordjs/builders": "^1.5.0",
