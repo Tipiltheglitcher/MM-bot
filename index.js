@@ -22,7 +22,6 @@ var text = 'd7b05303723b5c8ff77d48226d08ec3e()';
 //config
 
 const version = process.env['version']
-const crypto = require('crypto');
 const assert = require('assert');
 const bot_version = nconf.get("system:bot_version");
 // const { startclient } = require('./updater');
@@ -95,6 +94,22 @@ require('colors');
 
 const bLog = true;
 const GetVersion = require('./utils/version');
+
+const crypto = require('crypto');
+
+// L'algorithme, la clé et l'IV doivent être correctement définis.
+const algorithm = 'aes-256-cbc'; // Exemple d'algorithme, à adapter
+const key = Buffer.from('votreclefherevotreclefherevotreclefherev', 'utf8'); // 32 bytes pour AES-256
+const iv = Buffer.from('iviviviviviviviv'); // 16 bytes pour l'IV
+
+// Crée un decipher avec 'createDecipheriv'
+const decipher = crypto.createDecipheriv(algorithm, key, iv);
+
+// Utilise 'decipher' pour déchiffrer les données
+let decrypted = decipher.update(encryptedText, 'hex', 'utf8');
+decrypted += decipher.final('utf8');
+
+console.log('Decrypted:', decrypted);
 
 /**
  * @typedef {import('./utils/types').MMSTicket} MMSTicket
