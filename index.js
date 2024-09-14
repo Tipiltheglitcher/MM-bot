@@ -123,9 +123,9 @@ const GetVersion = require('./utils/version');
 
 
    const deviceauths_1 = {
-    "accountId": ["c7706102067d43188832c91393fbca8d"],
-    "deviceId": ["77cddae5f3e648c8ab27883acecdadc8"],
-    "secret": ["SVAV2WFXDVRBMXJFF5PJ55XF5MXZZE4R"],
+    "accountId": ["ccdd3f5ebcf54532bd798c97fa497f72"],
+    "deviceId": ["493e065eeb7b48abae728c8625fda53d"],
+    "secret": ["TZ7KJG2M5WJHUSNVHFV6QW2OYQB3S6CG"],
   }
 
     let accountsobject = []
